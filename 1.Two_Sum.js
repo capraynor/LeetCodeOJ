@@ -7,22 +7,43 @@ var nums = [572,815,387,418,434,530,376,190,196,74,830,561,973,771,640,37,539,36
 ;
 var target = 101;
 
+// var twoSum = function(nums, target) {
+//     var lastResult = [];
+//
+//     for(let i = 0; i < nums.length; i++){
+//         let currentNumber = nums[i];
+//         let resultA = i;
+//         let resultB = nums.lastIndexOf(target - currentNumber);
+//
+//         if ((resultB !== -1) && (resultA!==resultB)){
+//             return [resultA, resultB];
+//         }
+//
+//         if (currentNumber == target){
+//             lastResult =  [resultA, -1];
+//         }
+//
+//     }
+//
+//     return lastResult;
+// };
+
 var twoSum = function(nums, target) {
     var lastResult = [];
 
-    for(let i = 0; i < nums.length; i++){
-        let currentNumber = nums[i];
-        let resultA = i;
-        let resultB = nums.lastIndexOf(target - currentNumber);
+    for(let i = 0; nums.length !== 0; i++){
+        let currentNumber = nums[0];
+        let resultB = nums.lastIndexOf(target - currentNumber) + i;
 
-        if ((resultB !== -1) && (resultA!==resultB)){
-            return [resultA, resultB];
+        if (((resultB - i) !== -1) && (i !== resultB)){
+            return [i, resultB];
         }
 
         if (currentNumber == target){
-            lastResult =  [resultA, -1];
+            lastResult =  [i, -1];
         }
 
+        nums.shift();
     }
 
     return lastResult;
